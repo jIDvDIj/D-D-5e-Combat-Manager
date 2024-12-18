@@ -2,7 +2,7 @@
 
 RPG Combat Manager is a Java-based system designed to assist tabletop RPG game masters in managing enemies during combat. This project aims to provide a fast and practical tool to make encounters more organized and dynamic, allowing the game master to focus on storytelling and player engagement.
 
-![Landscape](landscape_illustration.png)
+![Landscape](resources/landscape_illustration.png)
 
 ## Main Features
 
