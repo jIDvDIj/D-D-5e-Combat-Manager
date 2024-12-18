@@ -48,8 +48,3 @@ RPGCombatManager/
    - **File** > **Import** > **Existing Projects into Workspace**.
 3. Run the project:
    - Right-click
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
