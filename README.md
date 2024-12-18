@@ -47,9 +47,7 @@ RPGCombatManager/
 2. Import the project into Eclipse IDE:
    - **File** > **Import** > **Existing Projects into Workspace**.
 3. Run the project:
-   - Right-click on the main file and select **Run As > Java Application**.
-
-Contributions are welcome! If you have ideas or improvements, please open an issue or submit a pull request.
+   - Right-click
 
 ## License
 
