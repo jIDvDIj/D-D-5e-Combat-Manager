@@ -20,7 +20,7 @@ RPGCombatManager/
 ├── src/
 │   ├── rpgcombatmanager/
 │   │   ├── model/  	# Model classes
-│	│	│	├── enums/	# enums
+│		│	  ├── enums/	# enums
 │   │   ├── service/	# Combat logic and rules
 │   │   └── ui/         # User interface
 ├── resources/ # Images, audios, fonts, etc.
