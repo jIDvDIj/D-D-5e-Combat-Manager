@@ -19,8 +19,9 @@ The project follows an organized structure to facilitate development and mainten
 RPGCombatManager/
 ├── src/
 │   ├── rpgcombatmanager/
-│   │   ├── model/      # Model classes
-│   │   ├── service/    # Combat logic and rules
+│   │   ├── model/  	# Model classes
+│	│	│	├── enums/	# enums
+│   │   ├── service/	# Combat logic and rules
 │   │   └── ui/         # User interface
 ├── resources/ # Images, audios, fonts, etc.
 └── README.md  # Project documentation
@@ -37,14 +38,3 @@ RPGCombatManager/
 
 - Java JDK 17 or higher
 - Eclipse IDE (or any preferred development environment)
-
-### Setting Up the Environment
-
-1. Clone this repository:
-   ```
-   git clone https://github.com/your-username/rpg-combat-manager.git
-   ```
-2. Import the project into Eclipse IDE:
-   - **File** > **Import** > **Existing Projects into Workspace**.
-3. Run the project:
-   - Right-click
