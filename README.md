@@ -19,10 +19,10 @@ The project follows an organized structure to facilitate development and mainten
 RPGCombatManager/
 ├── src/
 │   ├── rpgcombatmanager/
-│   │   ├── model/  	# Model classes
-│		│	  ├── enums/	# enums
-│   │   ├── service/	# Combat logic and rules
-│   │   └── ui/         # User interface
+│   │   ├── model/    	# Model classes
+│   │   │   ├── enums/	# enums
+│   │   ├── service/	  # Combat logic and rules
+│   │   ├── ui/         # User interface
 ├── resources/ # Images, audios, fonts, etc.
 └── README.md  # Project documentation
 ```
