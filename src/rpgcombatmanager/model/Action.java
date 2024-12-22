@@ -59,22 +59,6 @@ public class Action {
 		this.range = range;
 	}
 
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
-	public DamageTypes getTypeDamage() {
-		return typeDamage;
-	}
-
-	public void setTypeDamage(DamageTypes typeDamage) {
-		this.typeDamage = typeDamage;
-	}
-
 	public boolean isPassive() {
 		return isPassive;
 	}
@@ -91,8 +75,24 @@ public class Action {
 		this.isMagicAttack = isMagicAttack;
 	}
 	
-	public void addDiceDamage(int quantity, Dice Dice) {
-		diceDamage.put(quantity, Dice);
+	public void addDamage(DamageTypes damageType, Dice dice, int diceCount, int standardDamage ) {
+		damages.add(new Damage(damageType, dice, diceCount, standardDamage));
+	}
+	
+	public int rollDamage() {
+		int totalDamage = 0;
+		for(Damage damage : damages) {
+			totalDamage += damage.rollDamage();
+		}
+		return totalDamage;
+	}
+	
+	public int getStandardDamage() {
+		int totalDamage = 0;
+		for(Damage damage : damages) {
+			totalDamage += damage.getStandardDamage();
+		}
+		return totalDamage;
 	}
 	
 	

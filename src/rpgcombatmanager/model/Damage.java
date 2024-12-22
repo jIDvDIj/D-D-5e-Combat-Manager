@@ -47,7 +47,7 @@ public class Damage {
 		this.standardDamage = standardDamage;
 	}
 
-	public int rollDamage(int diceCount, Dice dice) {
+	public int rollDamage() {
 		int totalDamage = 0;
 		for (int i = 0; i < diceCount; i++) {
 			totalDamage += dice.roll();
