@@ -7,6 +7,7 @@ import rpgcombatmanager.model.enums.SenseTypes;
 import rpgcombatmanager.model.enums.SkillTypes;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
@@ -184,68 +185,38 @@ public class Creature {
 		this.charisma = charisma;
 	}
 
-	public Map<SavingThrowTypes, SavingThrow> getSavingThrows() {
-		return savingThrows;
+	@Override
+	public int hashCode() {
+		return Objects.hash(actions, armorClass, charisma, conditionsImmunities, constitution, damageImmunities,
+				dexterity, flightDisplacement, intelligence, languages, life, name, race, resistances, savingThrows,
+				senses, skills, strength, swimmingDisplacement, telempathy, walkingDisplacement, wisdom);
 	}
 
-	public void setSavingThrows(Map<SavingThrowTypes, SavingThrow> savingThrows) {
-		this.savingThrows = savingThrows;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Creature other = (Creature) obj;
+		return Objects.equals(actions, other.actions) && armorClass == other.armorClass && charisma == other.charisma
+				&& Objects.equals(conditionsImmunities, other.conditionsImmunities)
+				&& constitution == other.constitution && Objects.equals(damageImmunities, other.damageImmunities)
+				&& dexterity == other.dexterity
+				&& Float.floatToIntBits(flightDisplacement) == Float.floatToIntBits(other.flightDisplacement)
+				&& intelligence == other.intelligence && Objects.equals(languages, other.languages)
+				&& life == other.life && Objects.equals(name, other.name) && Objects.equals(race, other.race)
+				&& Objects.equals(resistances, other.resistances) && Objects.equals(savingThrows, other.savingThrows)
+				&& Objects.equals(senses, other.senses) && Objects.equals(skills, other.skills)
+				&& strength == other.strength
+				&& Float.floatToIntBits(swimmingDisplacement) == Float.floatToIntBits(other.swimmingDisplacement)
+				&& Float.floatToIntBits(telempathy) == Float.floatToIntBits(other.telempathy)
+				&& Float.floatToIntBits(walkingDisplacement) == Float.floatToIntBits(other.walkingDisplacement)
+				&& wisdom == other.wisdom;
 	}
 
-	public Map<SkillTypes, Skill> getSkills() {
-		return skills;
-	}
-
-	public void setSkills(Map<SkillTypes, Skill> skills) {
-		this.skills = skills;
-	}
-
-	public Map<SenseTypes, Integer> getSenses() {
-		return senses;
-	}
-
-	public void setSenses(Map<SenseTypes, Integer> senses) {
-		this.senses = senses;
-	}
-
-	public Map<LanguageTypes, Boolean> getLanguages() {
-		return languages;
-	}
-
-	public void setLanguages(Map<LanguageTypes, Boolean> languages) {
-		this.languages = languages;
-	}
-
-	public Map<DamageTypes, Boolean> getResistances() {
-		return resistances;
-	}
-
-	public void setResistances(Map<DamageTypes, Boolean> resistances) {
-		resistances = resistances;
-	}
-
-	public Map<DamageTypes, Boolean> getDamageImmunities() {
-		return damageImmunities;
-	}
-
-	public void setDamageImmunities(Map<DamageTypes, Boolean> damageImmunities) {
-		this.damageImmunities = damageImmunities;
-	}
-
-	public Map<DamageTypes, Boolean> getConditionsImmunities() {
-		return conditionsImmunities;
-	}
-
-	public void setConditionsImmunities(Map<DamageTypes, Boolean> conditionsImmunities) {
-		this.conditionsImmunities = conditionsImmunities;
-	}
-
-	public List<Action> getActions() {
-		return actions;
-	}
-
-	public void setActions(List<Action> actions) {
-		this.actions = actions;
-	}
+	
 
 }
