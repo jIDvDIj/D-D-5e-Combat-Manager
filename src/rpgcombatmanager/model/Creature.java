@@ -9,6 +9,7 @@ import rpgcombatmanager.model.enums.SkillTypes;
 import java.util.Map;
 import java.util.Objects;
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -33,10 +34,10 @@ public class Creature {
 	private Map<SavingThrowTypes, SavingThrow> savingThrows;
 	private Map<SkillTypes, Skill> skills;
 	private Map<SenseTypes, Integer> senses;
-	private Map<LanguageTypes, Boolean> languages;
-	private Map<DamageTypes, Boolean> resistances;
-	private Map<DamageTypes, Boolean> damageImmunities;
-	private Map<DamageTypes, Boolean> conditionsImmunities;
+	private EnumSet<LanguageTypes> languages;
+	private EnumSet<DamageTypes> resistances;
+	private EnumSet<DamageTypes> damageImmunities;
+	private EnumSet<DamageTypes> conditionsImmunities;
 
 	private List<Action> actions;
 
@@ -44,10 +45,10 @@ public class Creature {
 		this.savingThrows = new EnumMap<>(SavingThrowTypes.class);
 		this.skills = new EnumMap<>(SkillTypes.class);
 		this.senses = new HashMap<>();
-		this.languages = new HashMap<>();
-		this.resistances = new HashMap<>();
-		this.damageImmunities = new HashMap<>();
-		this.conditionsImmunities = new HashMap<>();
+		this.languages = EnumSet.noneOf(null);
+		this.resistances = EnumSet.noneOf(DamageTypes.class);
+		this.damageImmunities = EnumSet.noneOf(DamageTypes.class);
+		this.conditionsImmunities = EnumSet.noneOf(DamageTypes.class);
 		this.actions = new ArrayList<>();
 	}
 
@@ -185,6 +186,11 @@ public class Creature {
 		this.charisma = charisma;
 	}
 
+	public void addActions(String name, String description, int bonusAchive, float range, boolean ispassive,
+			boolean isMagicAttack, List<Damage> damages) {
+		actions.add(new Action(name, description, bonusAchive, range, ispassive, isMagicAttack, damages));
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(actions, armorClass, charisma, conditionsImmunities, constitution, damageImmunities,
@@ -216,7 +222,5 @@ public class Creature {
 				&& Float.floatToIntBits(walkingDisplacement) == Float.floatToIntBits(other.walkingDisplacement)
 				&& wisdom == other.wisdom;
 	}
-
-	
 
 }

@@ -15,16 +15,17 @@ public class Action {
 	private boolean isMagicAttack;
 
 	private List<Damage> damages;
-	
-	public Action(String name, String description, boolean isPassive, boolean isMagicAttack) {
+
+	public Action(String name, String description, int bonusAchive, float range, boolean isPassive,
+			boolean isMagicAttack, List<Damage> damages) {
 		this.name = name;
 		this.description = description;
 		this.isPassive = isPassive;
 		this.isMagicAttack = isMagicAttack;
 		this.bonusAchive = 0;
-		this.range = 0;
-		this.damages = new ArrayList<>();
-		
+		this.range = range;
+		this.damages = damages != null ? damages : new ArrayList<>();
+
 	}
 
 	public String getName() {
@@ -74,26 +75,25 @@ public class Action {
 	public void setMagicAttack(boolean isMagicAttack) {
 		this.isMagicAttack = isMagicAttack;
 	}
-	
-	public void addDamage(DamageTypes damageType, Dice dice, int diceCount, int standardDamage ) {
+
+	public void addDamage(DamageTypes damageType, Dice dice, int diceCount, int standardDamage) {
 		damages.add(new Damage(damageType, dice, diceCount, standardDamage));
 	}
-	
+
 	public int rollDamage() {
 		int totalDamage = 0;
-		for(Damage damage : damages) {
+		for (Damage damage : damages) {
 			totalDamage += damage.rollDamage();
 		}
 		return totalDamage;
 	}
-	
+
 	public int getStandardDamage() {
 		int totalDamage = 0;
-		for(Damage damage : damages) {
+		for (Damage damage : damages) {
 			totalDamage += damage.getStandardDamage();
 		}
 		return totalDamage;
 	}
-	
-	
+
 }
