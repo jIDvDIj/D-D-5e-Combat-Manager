@@ -1,5 +1,6 @@
 package rpgcombatmanager.model;
 
+import rpgcombatmanager.model.enums.Alignment;
 import rpgcombatmanager.model.enums.DamageTypes;
 import rpgcombatmanager.model.enums.LanguageTypes;
 import rpgcombatmanager.model.enums.SavingThrowTypes;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class Creature {
 	private String name;
 	private String race;
+	Alignment alignment;
 	private int armorClass;
 	private int life;
 	private float walkingDisplacement;
@@ -52,11 +54,12 @@ public class Creature {
 		this.actions = new ArrayList<>();
 	}
 
-	public Creature(String name, String race, int armorClass, int life, float walkingDisplacement, int strength,
+	public Creature(String name, String race, Alignment alignment, int armorClass, int life, float walkingDisplacement, int strength,
 			int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
 		this();
 		this.name = name;
 		this.race = race;
+		this.alignment = alignment;
 		this.armorClass = armorClass;
 		this.life = life;
 		this.walkingDisplacement = walkingDisplacement;
@@ -84,6 +87,14 @@ public class Creature {
 
 	public String getRace() {
 		return race;
+	}
+	
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	public void setAlignment(Alignment alignment) {
+		this.alignment = alignment;
 	}
 
 	public void setRace(String race) {
@@ -189,38 +200,6 @@ public class Creature {
 	public void addActions(String name, String description, int bonusAchive, float range, boolean ispassive,
 			boolean isMagicAttack, List<Damage> damages) {
 		actions.add(new Action(name, description, bonusAchive, range, ispassive, isMagicAttack, damages));
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(actions, armorClass, charisma, conditionsImmunities, constitution, damageImmunities,
-				dexterity, flightDisplacement, intelligence, languages, life, name, race, resistances, savingThrows,
-				senses, skills, strength, swimmingDisplacement, telempathy, walkingDisplacement, wisdom);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Creature other = (Creature) obj;
-		return Objects.equals(actions, other.actions) && armorClass == other.armorClass && charisma == other.charisma
-				&& Objects.equals(conditionsImmunities, other.conditionsImmunities)
-				&& constitution == other.constitution && Objects.equals(damageImmunities, other.damageImmunities)
-				&& dexterity == other.dexterity
-				&& Float.floatToIntBits(flightDisplacement) == Float.floatToIntBits(other.flightDisplacement)
-				&& intelligence == other.intelligence && Objects.equals(languages, other.languages)
-				&& life == other.life && Objects.equals(name, other.name) && Objects.equals(race, other.race)
-				&& Objects.equals(resistances, other.resistances) && Objects.equals(savingThrows, other.savingThrows)
-				&& Objects.equals(senses, other.senses) && Objects.equals(skills, other.skills)
-				&& strength == other.strength
-				&& Float.floatToIntBits(swimmingDisplacement) == Float.floatToIntBits(other.swimmingDisplacement)
-				&& Float.floatToIntBits(telempathy) == Float.floatToIntBits(other.telempathy)
-				&& Float.floatToIntBits(walkingDisplacement) == Float.floatToIntBits(other.walkingDisplacement)
-				&& wisdom == other.wisdom;
 	}
 
 }
