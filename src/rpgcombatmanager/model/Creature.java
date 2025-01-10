@@ -3,13 +3,9 @@ package rpgcombatmanager.model;
 import rpgcombatmanager.model.enums.Alignment;
 import rpgcombatmanager.model.enums.DamageTypes;
 import rpgcombatmanager.model.enums.LanguageTypes;
-import rpgcombatmanager.model.enums.SavingThrowTypes;
 import rpgcombatmanager.model.enums.SenseTypes;
-import rpgcombatmanager.model.enums.SkillTypes;
 
 import java.util.Map;
-import java.util.Objects;
-import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +14,9 @@ import java.util.ArrayList;
 public class Creature {
 	private String name;
 	private String race;
-	Alignment alignment;
+	private Alignment alignment;
+	private int lifePoints;
 	private int armorClass;
-	private int life;
 	private float walkingDisplacement;
 	private float flightDisplacement;
 	private float swimmingDisplacement;
@@ -32,9 +28,7 @@ public class Creature {
 	private int intelligence;
 	private int wisdom;
 	private int charisma;
-
-	private Map<SavingThrowTypes, SavingThrow> savingThrows;
-	private Map<SkillTypes, Skill> skills;
+	
 	private Map<SenseTypes, Integer> senses;
 	private EnumSet<LanguageTypes> languages;
 	private EnumSet<DamageTypes> resistances;
@@ -44,24 +38,24 @@ public class Creature {
 	private List<Action> actions;
 
 	public Creature() {
-		this.savingThrows = new EnumMap<>(SavingThrowTypes.class);
-		this.skills = new EnumMap<>(SkillTypes.class);
+		
 		this.senses = new HashMap<>();
-		this.languages = EnumSet.noneOf(null);
+		
+		this.languages = EnumSet.noneOf(LanguageTypes.class);
 		this.resistances = EnumSet.noneOf(DamageTypes.class);
 		this.damageImmunities = EnumSet.noneOf(DamageTypes.class);
 		this.conditionsImmunities = EnumSet.noneOf(DamageTypes.class);
 		this.actions = new ArrayList<>();
 	}
 
-	public Creature(String name, String race, Alignment alignment, int armorClass, int life, float walkingDisplacement, int strength,
+	public Creature(String name, String race, Alignment alignment, int armorClass, int lifePoints, float walkingDisplacement, int strength,
 			int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
 		this();
 		this.name = name;
 		this.race = race;
 		this.alignment = alignment;
 		this.armorClass = armorClass;
-		this.life = life;
+		this.lifePoints = lifePoints;
 		this.walkingDisplacement = walkingDisplacement;
 		this.flightDisplacement = 0;
 		this.swimmingDisplacement = walkingDisplacement / 2;
@@ -71,6 +65,8 @@ public class Creature {
 		this.dexterity = dexterity;
 		this.constitution = constitution;
 		this.intelligence = intelligence;
+		this.wisdom = wisdom;
+		this.charisma = charisma;
 	}
 
 	public int attributeModifier(int attributeValue) {
@@ -88,6 +84,10 @@ public class Creature {
 	public String getRace() {
 		return race;
 	}
+
+	public void setRace(String race) {
+		this.race = race;
+	}
 	
 	public Alignment getAlignment() {
 		return alignment;
@@ -95,10 +95,6 @@ public class Creature {
 
 	public void setAlignment(Alignment alignment) {
 		this.alignment = alignment;
-	}
-
-	public void setRace(String race) {
-		this.race = race;
 	}
 
 	public int getArmorClass() {
@@ -110,11 +106,11 @@ public class Creature {
 	}
 
 	public int getLife() {
-		return life;
+		return lifePoints;
 	}
 
 	public void setLife(int life) {
-		this.life = life;
+		this.lifePoints = life;
 	}
 
 	public float getWalkingDisplacement() {
@@ -198,8 +194,8 @@ public class Creature {
 	}
 
 	public void addActions(String name, String description, int bonusAchive, float range, boolean ispassive,
-			boolean isMagicAttack, List<Damage> damages) {
-		actions.add(new Action(name, description, bonusAchive, range, ispassive, isMagicAttack, damages));
+			boolean isMagicAttack, Boolean isLegendaryAction, List<Damage> damages) {
+		actions.add(new Action(name, description, bonusAchive, range, ispassive, isMagicAttack, isLegendaryAction, damages));
 	}
 
 }

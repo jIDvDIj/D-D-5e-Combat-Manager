@@ -1,4 +1,4 @@
-package rpgcombatmanager.model;
+package rpgcombatmanager.model.enums;
 
 import java.util.Random;
 

@@ -1,6 +1,7 @@
 package rpgcombatmanager.model;
 
 import rpgcombatmanager.model.enums.DamageTypes;
+import rpgcombatmanager.model.enums.Dice;
 
 public class Damage {
 	private DamageTypes damageType;

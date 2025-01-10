@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rpgcombatmanager.model.enums.DamageTypes;
+import rpgcombatmanager.model.enums.Dice;
 
 public class Action {
 
@@ -13,15 +14,17 @@ public class Action {
 	private float range;
 	private boolean isPassive;
 	private boolean isMagicAttack;
+	private boolean isLegendaryAction;
 
 	private List<Damage> damages;
 
 	public Action(String name, String description, int bonusAchive, float range, boolean isPassive,
-			boolean isMagicAttack, List<Damage> damages) {
+			boolean isMagicAttack, Boolean isLegendaryAction, List<Damage> damages) {
 		this.name = name;
 		this.description = description;
 		this.isPassive = isPassive;
 		this.isMagicAttack = isMagicAttack;
+		this.isLegendaryAction = isLegendaryAction;
 		this.bonusAchive = 0;
 		this.range = range;
 		this.damages = damages != null ? damages : new ArrayList<>();
@@ -74,6 +77,14 @@ public class Action {
 
 	public void setMagicAttack(boolean isMagicAttack) {
 		this.isMagicAttack = isMagicAttack;
+	}
+
+	public boolean isLegendaryAction() {
+		return isLegendaryAction;
+	}
+
+	public void setLegendaryAction(boolean isLegendaryAction) {
+		this.isLegendaryAction = isLegendaryAction;
 	}
 
 	public void addDamage(DamageTypes damageType, Dice dice, int diceCount, int standardDamage) {
