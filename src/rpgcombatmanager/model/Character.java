@@ -27,10 +27,17 @@ public class Character extends Creature {
 	}
 
 	public Character(String name, String race, Alignment alignment, int armorClass, int life, float walkingDisplacement,
-			int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+			int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, String antecedent, int level, boolean isNPC) {
 		super(name, race, alignment, armorClass, life, walkingDisplacement, strength, dexterity, constitution, intelligence,
 				wisdom, charisma);
 		this.proficiencyBonus = 2;
+		this.playerName = null;
+		this.antecedent = null;
+		this.level = level;
+		this.experiencePoints = 0;
+		this.inspiration = 0;
+		this.isNPC = isNPC;
+		
 	}
 	
 }

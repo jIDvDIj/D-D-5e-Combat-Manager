@@ -20,12 +20,20 @@ public class Monster extends Creature {
 		this.skills = new EnumMap<>(SkillTypes.class);
 	}
 
-	public Monster(String name, String race, Size size, Alignment alignment, int armorClass, int life, float walkingDisplacement,
-			int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+	public Monster(String name, String race, Alignment alignment, int armorClass, int life, float walkingDisplacement,
+			int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, Size size) {
 		super(name, race, alignment, armorClass, life, walkingDisplacement, strength, dexterity, constitution, intelligence,
 				wisdom, charisma);
 		this.size = size;
 		// TODO Auto-generated constructor stub
 	}
- 
+
+	public Size getSize() {
+		return size;
+	}
+
+	public void setSize(Size size) {
+		this.size = size;
+	}
+	
 }
