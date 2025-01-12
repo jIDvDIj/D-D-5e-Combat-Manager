@@ -1,6 +1,7 @@
 package rpgcombatmanager.model;
 
 import rpgcombatmanager.model.enums.Alignment;
+import rpgcombatmanager.model.enums.ConditionTypes;
 import rpgcombatmanager.model.enums.DamageTypes;
 import rpgcombatmanager.model.enums.LanguageTypes;
 import rpgcombatmanager.model.enums.SenseTypes;
@@ -20,7 +21,7 @@ public class Creature {
 	private float walkingDisplacement;
 	private float flightDisplacement;
 	private float swimmingDisplacement;
-	private float telempathy;
+	private float telempathyDisplacement;
 
 	private int strength;
 	private int dexterity;
@@ -28,28 +29,31 @@ public class Creature {
 	private int intelligence;
 	private int wisdom;
 	private int charisma;
-	
+
 	private Map<SenseTypes, Integer> senses;
 	private EnumSet<LanguageTypes> languages;
 	private EnumSet<DamageTypes> resistances;
 	private EnumSet<DamageTypes> damageImmunities;
-	private EnumSet<DamageTypes> conditionsImmunities;
+	private EnumSet<ConditionTypes> conditionsImmunities;
 
 	private List<Action> actions;
+	private List<Action> passiveActions;
 
 	public Creature() {
-		
+
 		this.senses = new HashMap<>();
-		
+
 		this.languages = EnumSet.noneOf(LanguageTypes.class);
 		this.resistances = EnumSet.noneOf(DamageTypes.class);
 		this.damageImmunities = EnumSet.noneOf(DamageTypes.class);
-		this.conditionsImmunities = EnumSet.noneOf(DamageTypes.class);
+		this.conditionsImmunities = EnumSet.noneOf(ConditionTypes.class);
 		this.actions = new ArrayList<>();
+		this.passiveActions = new ArrayList<>();
 	}
 
-	public Creature(String name, String race, Alignment alignment, int armorClass, int lifePoints, float walkingDisplacement, int strength,
-			int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+	public Creature(String name, String race, Alignment alignment, int armorClass, int lifePoints,
+			float walkingDisplacement, int strength, int dexterity, int constitution, int intelligence, int wisdom,
+			int charisma) {
 		this();
 		this.name = name;
 		this.race = race;
@@ -59,7 +63,7 @@ public class Creature {
 		this.walkingDisplacement = walkingDisplacement;
 		this.flightDisplacement = 0;
 		this.swimmingDisplacement = walkingDisplacement / 2;
-		this.telempathy = 0;
+		this.telempathyDisplacement = 0;
 
 		this.strength = strength;
 		this.dexterity = dexterity;
@@ -88,7 +92,7 @@ public class Creature {
 	public void setRace(String race) {
 		this.race = race;
 	}
-	
+
 	public Alignment getAlignment() {
 		return alignment;
 	}
@@ -138,11 +142,11 @@ public class Creature {
 	}
 
 	public float getTelempathy() {
-		return telempathy;
+		return telempathyDisplacement;
 	}
 
 	public void setTelempathy(float telempathy) {
-		this.telempathy = telempathy;
+		this.telempathyDisplacement = telempathy;
 	}
 
 	public int getStrength() {
@@ -193,9 +197,162 @@ public class Creature {
 		this.charisma = charisma;
 	}
 
-	public void addActions(String name, String description, int bonusAchive, float range, boolean ispassive,
-			boolean isMagicAttack, Boolean isLegendaryAction, List<Damage> damages) {
-		actions.add(new Action(name, description, bonusAchive, range, ispassive, isMagicAttack, isLegendaryAction, damages));
+	public Integer getSense(SenseTypes sense) {
+		return senses.get(sense);
 	}
 
+	public boolean containsSense(SenseTypes sense) {
+		return senses.containsKey(sense);
+	}
+
+	public Integer addSense(SenseTypes senseType, Integer value) {
+		return senses.put(senseType, value);
+	}
+
+	public Integer removeSense(SenseTypes senseType) {
+		return senses.remove(senseType);
+	}
+
+	public void clearSenses() {
+		senses.clear();
+	}
+
+	public void addLanguage(LanguageTypes languageType) {
+		languages.add(languageType);
+	}
+
+	public boolean containsLanguage(LanguageTypes languageType) {
+		return languages.contains(languageType);
+	}
+
+	public void removeLanguage(LanguageTypes languageType) {
+		languages.remove(languageType);
+	}
+
+	public void clearLanguages() {
+		languages.clear();
+	}
+
+	public void addResistance(DamageTypes damageType) {
+		resistances.add(damageType);
+	}
+
+	public boolean containsResistance(DamageTypes damageType) {
+		return resistances.contains(damageType);
+	}
+
+	public void removeResistance(DamageTypes damageType) {
+		resistances.remove(damageType);
+	}
+
+	public void clearResistances() {
+		resistances.clear();
+	}
+
+	public void addDamageImmunity(DamageTypes damageType) {
+		damageImmunities.add(damageType);
+	}
+
+	public boolean containsDamageImmunity(DamageTypes damageType) {
+		return damageImmunities.contains(damageType);
+	}
+
+	public void removeDamageImmunity(DamageTypes damageType) {
+		damageImmunities.remove(damageType);
+	}
+
+	public void clearDamageImmunities() {
+		damageImmunities.clear();
+	}
+
+	public void addConditionImmunity(ConditionTypes conditionType) {
+		conditionsImmunities.add(conditionType);
+	}
+
+	public boolean containsConditionImmunity(ConditionTypes conditionType) {
+		return conditionsImmunities.contains(conditionType);
+	}
+
+	public void removeConditionImmunity(ConditionTypes conditionType) {
+		conditionsImmunities.remove(conditionType);
+	}
+
+	public void clearConditionImmunities() {
+		conditionsImmunities.clear();
+	}
+
+	public void CreateAction(String name, String description, int bonusAchive, float range, boolean ispassive,
+			boolean isMagicAttack, Boolean isLegendaryAction, List<Damage> damages) {
+		actions.add(new Action(name, description, bonusAchive, range, ispassive, isMagicAttack, isLegendaryAction,
+				damages));
+	}
+
+	public void addAction(Action action) {
+		if (action == null) {
+			throw new IllegalArgumentException("Action cannot be null.");
+		}
+		if (actions.contains(action)) {
+			throw new IllegalStateException("Action already exists in the list.");
+		}
+		actions.add(action);
+	}
+	
+	public Action getActionByName(String actionName) {
+	    if (actionName == null || actionName.isEmpty()) {
+	        throw new IllegalArgumentException("The action name cannot be null or empty.");
+	    }
+	    return actions.stream()
+	                  .filter(action -> actionName.equalsIgnoreCase(action.getName()))
+	                  .findFirst()
+	                  .orElse(null);
+	}
+
+	public boolean removeAction(Action action) {
+		return actions.remove(action);
+	}
+
+	public List<Action> getActions() {
+		return new ArrayList<>(actions);
+	}
+	
+	public void sortActionsAlphabetically() {
+	    actions.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+	}
+
+	public void CreatePassiveAction(String name, String description, int bonusAchive, float range, boolean isPassive,
+			boolean isMagicAttack, Boolean isLegendaryAction, List<Damage> damages) {
+		passiveActions.add(new Action(name, description, bonusAchive, range, isPassive, isMagicAttack,
+				isLegendaryAction, damages));
+	}
+
+	public void addPassiveAction(Action action) {
+		if (action == null || !action.isPassive()) {
+			throw new IllegalArgumentException("Invalid action. It must be passive.");
+		}
+		if (actions.contains(action)) {
+			throw new IllegalStateException("Action already exists in the list.");
+		}
+		passiveActions.add(action);
+	}
+	
+	public Action getPassiveActionByName(String actionName) {
+	    if (actionName == null || actionName.isEmpty()) {
+	        throw new IllegalArgumentException("The action name cannot be null or empty.");
+	    }
+	    return passiveActions.stream()
+	                  .filter(action -> actionName.equalsIgnoreCase(action.getName()))
+	                  .findFirst()
+	                  .orElse(null);
+	}
+	public List<Action> getPassiveActions() {
+		return new ArrayList<>(passiveActions);
+	}
+	
+	public boolean removePassiveAction(Action action) {
+		return passiveActions.remove(action);
+	}
+	
+	public void sortPassiveActionsAlphabetically() {
+	    passiveActions.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+	}
 }

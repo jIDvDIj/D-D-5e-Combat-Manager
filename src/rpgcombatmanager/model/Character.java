@@ -40,4 +40,75 @@ public class Character extends Creature {
 		
 	}
 	
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public String getAntecedent() {
+		return antecedent;
+	}
+
+	public void setAntecedent(String antecedent) {
+		this.antecedent = antecedent;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public float getExperiencePoints() {
+		return experiencePoints;
+	}
+
+	public void setExperiencePoints(float experiencePoints) {
+		this.experiencePoints = experiencePoints;
+	}
+
+	public int getInspiration() {
+		return inspiration;
+	}
+
+	public void setInspiration(int inspiration) {
+		this.inspiration = inspiration;
+	}
+
+	public int getProficiencyBonus() {
+		return proficiencyBonus;
+	}
+
+	public void setProficiencyBonus(int proficiencyBonus) {
+		this.proficiencyBonus = proficiencyBonus;
+	}
+
+	public boolean isNPC() {
+		return isNPC;
+	}
+
+	public void setNPC(boolean isNPC) {
+		this.isNPC = isNPC;
+	}
+	
+	public void addSkill(SkillTypes skillType ) {
+		skills.add(skillType);
+	}
+	
+	public boolean containsSkill(SkillTypes skillType) {
+		return skills.contains(skillType);
+	}
+	
+	public void addSavingThrow(SavingThrowTypes savingThrowType) {
+		savingThrows.add(savingThrowType);
+	}
+	
+	public boolean containsSavingThrow(SavingThrowTypes savingThrowType) {
+		return savingThrows.contains(savingThrowType);
+	}
 }

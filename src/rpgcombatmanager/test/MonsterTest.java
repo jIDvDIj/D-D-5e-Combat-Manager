@@ -55,7 +55,7 @@ class MonsterTest {
 
     @Test
     void testAddActions() {
-        goblin.addActions(
+        goblin.CreateAction(
                 "Ataque Básico",
                 "Um golpe simples com espada",
                 5,

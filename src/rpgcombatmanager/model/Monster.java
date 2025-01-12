@@ -3,6 +3,7 @@ package rpgcombatmanager.model;
 import java.util.EnumMap;
 import java.util.Map;
 
+
 import rpgcombatmanager.model.enums.Alignment;
 import rpgcombatmanager.model.enums.SavingThrowTypes;
 import rpgcombatmanager.model.enums.Size;
@@ -35,5 +36,30 @@ public class Monster extends Creature {
 	public void setSize(Size size) {
 		this.size = size;
 	}
+	
+	public boolean containsSkill(SkillTypes key) {
+		return skills.containsKey(key);
+	}
+	
+	public void putSkill(SkillTypes key, Integer value) {
+		skills.put(key, value);
+	}
+
+	public Integer getSkill(SkillTypes key) {
+		return skills.get(key);
+	}
+	
+	public boolean containsSavingThrow(SavingThrowTypes key) {
+		return savingThrows.containsKey(key);
+	}
+	
+	public void putSavingThrow(SavingThrowTypes key, Integer value) {
+		savingThrows.put(key, value);
+	}
+
+	public Integer getSavingThrow(SavingThrowTypes key) {
+		return savingThrows.get(key);
+	}
+	
 	
 }
