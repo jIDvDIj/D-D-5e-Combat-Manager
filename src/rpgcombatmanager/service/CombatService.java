@@ -1,5 +1,5 @@
 package rpgcombatmanager.service;
 
-public class combat {
-
+public class CombatService {
+	
 }

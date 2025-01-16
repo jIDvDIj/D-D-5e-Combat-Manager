@@ -7,12 +7,14 @@ public class Damage {
 	private DamageTypes damageType;
 	private Dice dice;
 	private int diceCount;
+	private int damageBonus;
 	private int standardDamage;
 
-	public Damage(DamageTypes damageType, Dice dice, int diceCount, int standardDamage) {
+	public Damage(DamageTypes damageType, Dice dice, int diceCount, int damageBonus, int standardDamage) {
 		this.damageType = damageType;
 		this.dice = dice;
 		this.diceCount = diceCount;
+		this.damageBonus = damageBonus;
 		this.standardDamage = standardDamage;
 	}
 
@@ -39,6 +41,14 @@ public class Damage {
 	public void setDiceCount(int diceCount) {
 		this.diceCount = diceCount;
 	}
+	
+	public int getDamageBonus() {
+		return damageBonus;
+	}
+
+	public void setDamageBonus(int damageBonus) {
+		this.damageBonus = damageBonus;
+	}
 
 	public int getStandardDamage() {
 		return standardDamage;
@@ -53,7 +63,7 @@ public class Damage {
 		for (int i = 0; i < diceCount; i++) {
 			totalDamage += dice.roll();
 		}
-		return totalDamage;
+		return totalDamage + damageBonus;
 	}
 
 }

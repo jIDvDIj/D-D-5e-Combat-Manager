@@ -17,7 +17,20 @@ public class Action {
 	private boolean isLegendaryAction;
 
 	private List<Damage> damages;
-
+    
+	/**
+	 * Creates a new Action object.
+	 * 
+	 * @param name           The name of the action.
+	 * @param description    A brief description of the action.
+	 * @param bonusAchieve   The bonus to achieve the action.
+	 * @param range          The range of the action in feet.
+	 * @param isPassive      Whether the action is passive.
+	 * @param isMagicAttack  Whether the action is magical.
+	 * @param isLegendaryAction Whether the action is legendary.
+	 * @param damages        The list of damages caused by the action.
+	 */
+	
 	public Action(String name, String description, int bonusAchive, float range, boolean isPassive,
 			boolean isMagicAttack, Boolean isLegendaryAction, List<Damage> damages) {
 		this.name = name;
@@ -87,8 +100,8 @@ public class Action {
 		this.isLegendaryAction = isLegendaryAction;
 	}
 
-	public void addDamage(DamageTypes damageType, Dice dice, int diceCount, int standardDamage) {
-		damages.add(new Damage(damageType, dice, diceCount, standardDamage));
+	public void addDamage(DamageTypes damageType, Dice dice, int diceCount, int damageBonus, int standardDamage) {
+		damages.add(new Damage(damageType, dice, diceCount, damageBonus, standardDamage));
 	}
 
 	public int rollDamage() {

@@ -26,7 +26,6 @@ public class Monster extends Creature {
 		super(name, race, alignment, armorClass, life, walkingDisplacement, strength, dexterity, constitution, intelligence,
 				wisdom, charisma);
 		this.size = size;
-		// TODO Auto-generated constructor stub
 	}
 
 	public Size getSize() {
